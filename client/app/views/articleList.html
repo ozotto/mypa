@@ -1,0 +1,37 @@
+<div class="col-sm-3 col-md-2 sidebar">
+	<!-- List Categories -->
+	<h2 class="titleSidebar" ng-click='viewList("alls")'>Categories</h2>
+	<ul class="nav nav-sidebar" ng-repeat='category in categories'>
+    	<li><a ng-click='viewList(category)'>{{ category.name }}</a></li>
+    </ul>
+</div>	
+
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+	<h1 class="titleList">List Articles</h1>
+	<!-- List Articles -->
+	<ul>
+	<li data-ng-repeat='article in articles' class='col-lg-6 editArticleList'>
+		<div class='editArticle'>
+			<h2><a data-ng-href="#/articles/{{ article._id }}">{{article.title}}</a></h2>
+			<div class="subtitle" ng-repeat="category in categories | filter: article.category">
+			    <h4>Category:  {{ category.name }}</h4>
+  			</div>
+  			<p>{{ textDemo | limitTo:maxText }}</p>
+			<carousel interval="myInterval">
+	        <slide ng-repeat="slide in slides" active="slide.active">
+		        <img ng-src="{{slide.image}}" style="margin:auto;">
+		        <div class="carousel-caption">
+		        	<h4>Slide {{$index}}</h4>
+		            <p>{{slide.text}}</p>
+		        </div>
+	        </slide>
+        	</carousel>
+			<a class="btn btn-primary" href="#/articles/{{article._id}}" role="button">View details &raquo;</a>
+		</div>
+	</li>	
+</ul>
+</div>
+
+
+
+

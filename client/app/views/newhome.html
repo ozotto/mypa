@@ -1,0 +1,39 @@
+<h4>new home</h4>
+<!--
+<h3>Categorias</h3>
+{{categories}}
+<h3>History</h3><br>
+{{historic}}
+<h3>Favorites</h3><br>
+{{favorites}}
+<h3>Articles</h3><br>
+{{articles}}
+-->
+{{articleSelected}}
+<!-- vis: {{makeVis}} -->
+<div id="outer">
+    You are {{myTestVariable}}
+</div>
+<div onclick="changeCategory('culture')">click me</div>
+<!--
+<div onclick="changeCategory('culture')" class="ng-scope">click me</div>
+<a onclick="changeCategory()">Arts</a>
+-->
+
+<div my-directiva>
+	<!-- <button class="btn btn-success" ng-click="nuevo()">otra vez</button>-->
+</div>
+
+<vis2>
+	<pasto evento="myTestVariable"></pasto>
+	<time-lineas id="TimeLine" data="data" options="options" events="events"></time-lineas>
+</vis2>
+<script type="text/javascript">
+	function changeCategory (name) {
+		var scope = angular.element($("#outer")).scope();
+    		scope.$apply(function(){
+        	scope.myTestVariable = name;
+        	
+    	});
+	}
+</script>

@@ -1,0 +1,47 @@
+<div class="col-sm-3 col-md-2 sidebar">
+	<!-- List Categories -->
+	<h2 class="titleSidebar" ng-click='viewList("alls")'>Categories</h2>
+	<ul class="nav nav-sidebar" ng-repeat='category in categories'>
+    	<li><a ng-click='viewList(category)'>{{ category.name }}</a></li>
+    </ul>
+</div>
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+	<h1 class="titleList">New Category</h1>
+	<!-- Form Creation Article -->
+	<form class="form-horizontal col-md-6" role="form" name="formNewCategory" novalidate>
+	  <!-- Name Category -->
+	  <div class="form-group">
+	    <label class="col-md-3 control-label">Name</label>
+	    <div class="col-md-9">
+	      <input type="text" class="form-control" name="name" ng-model="fileName" placeholder="New Category" required>
+	      <span class="help-block" ng-show="formNewCategory.name.$error.required">Name is required!</span>
+	    </div>  
+	  </div>
+
+	  <div ng-show="success" class="alert alert-success" role="alert">{{ msgSuccess }}</div>
+	  <!-- Button -->
+	  <div class="form-group">
+	      <div class="col-md-offset-3 col-md-9">
+	        <button ng-disabled="!formNewCategory.$valid" class="btn btn-primary" ng-click="createCategory(formNewCategory)">Create Category</button>
+	      </div>
+	  </div>
+	</form>  
+</div>	
+
+<!--
+<h2>Categories</h2>
+<table border="1" style="width:100%">
+  <tr>
+    <td><h4>Category</h4></td>
+    <td><h4>Delete</h4></td> 
+  </tr>
+  
+  <tr ng-repeat='category in categories'>
+    <td>{{ category.name }} -- {{ category._id }}</td>
+    <td><button ng-click='deleteCategory(category._id)'>Delete</button></td> 
+  </tr>
+</table>
+<br>
+New Category: <input ng-model='newCategory'></input>
+<button ng-click='addCategory()'>add</button>
+-->

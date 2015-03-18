@@ -1,0 +1,68 @@
+<!-- <h3>Home</h3> -->
+
+
+<div class="panel">
+    <div class="row fluid">
+      <div class="medium-5 columns">
+        <time-board>
+        <h4>{{dateDefault | date:'MMMM/dd/yyyy'}}</h4>
+          <h4>{{ dateDefault}} {{info.first}}</h4>
+          <h5>{{info.second}}</h5>
+          <h6>{{info.third}}</h6>
+        </time-board>
+      </div>
+      <div class="medium-7 columns">
+        <br/>
+        <time-navigation class="clearfix">
+          <ul class="button-group round right">
+            <li>
+              <a ng-click="setScope('day')" class="button tiny {{view.day && 'primary' || 'secondary'}}">Day</a>
+            </li>
+            <li>
+              <a ng-click="setScope('week')" class="button tiny {{view.week && 'primary' || 'secondary'}}">Week</a>
+            </li>
+            <li>
+              <a ng-click="setScope('month')" class="button tiny {{view.month && 'primary' || 'secondary'}}">Month</a>
+            </li>
+            <li>
+              <a ng-click="setScope('year')" class="button tiny {{view.year && 'primary' || 'secondary'}}">Year</a>
+            </li>
+          </ul>
+          <ul class="button-group round right" style="margin-right: 15px">
+            <li>
+              <a ng-click="stepScope(-1)" class="button tiny"><i class="fi-arrow-left"></i></a>
+            </li>
+            <li>
+              <a ng-click="zoomScope(0.2)" class="button tiny"><i class="fi-arrow-up"></i></a>
+            </li>
+            <li>
+              <a ng-click="zoomScope(-0.2)" class="button tiny"><i class="fi-arrow-down"></i></a>
+            </li>
+            <li>
+              <a ng-click="stepScope(1)" class="button tiny"><i class="fi-arrow-right"></i></a>
+            </li>
+          </ul>
+        </time-navigation>
+      </div>
+    </div>
+  </div>
+
+<!-- Article selected: {{ articleSelected }} -->
+<h2>{{articleSelected.title}}</h2>
+
+<select ng-model="categorieDefault" ng-options="category.name for category in selectCategorie" ng-change="selectSort()"></select>
+
+  <!-- {{data}} -->
+<!--
+<div ng-repeat='categorys in orderData'>
+    {{ categorys.content }} = {{categorys.count}}
+    <br>
+</div>    
+-->
+    
+  
+
+<vis ng-transclude> 
+ <time-line data="data" options="options" events="events"></time-line>  
+</vis> 
+

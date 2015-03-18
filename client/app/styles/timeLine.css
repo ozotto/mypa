@@ -1,0 +1,236 @@
+.egalColor{
+	background-color: #008cba;
+	color: white;
+}
+
+.disableText{
+	color: #eee;
+}
+
+.panelTimeLine{
+	padding-right: 20px !important;
+	padding-left: 20px !important;
+	padding-bottom: 48px; 
+	padding-top: 15px;
+}
+
+.panelTimeLine .vispanel a{
+	color: #000;
+	text-decoration: none;
+	line-height: inherit;
+	vertical-align: middle;
+}
+
+.panelTimeLine .vispanel a:hover, a:focus {
+	color: red;
+}
+
+.titleDay{
+	width: 100%;
+	font-size: 23px;
+	padding-bottom: 5px;
+	border-bottom: 1px solid #eee;
+}
+.navegationUp{
+	width: 100%;
+	height: 50px;
+	font-size: 23px;
+	margin-top: 6px;
+}
+
+.navRight{
+	width: 50%;
+	height: 100%;
+	float: left;
+}
+
+.navLeft{
+	width: 50%;
+	height: 100%;
+	float: left;
+}
+
+.navegationBottom{
+	width: 100%;
+	margin-top: 5px;
+}
+
+.rangeInfo{
+	height: auto;
+	width: 30%;
+	float: left;
+}
+.placeNavegation{
+	height: auto;
+	width: 30%;
+	float: left;	
+}
+
+.sizeIconSmall{
+	font-size: smaller;
+}
+
+.placeTimeUp{
+	width: 100%;
+	height: 35px;
+	margin-bottom: 5px;
+}
+
+.placeTimeUpLeft{
+	width: 50%;
+	height: 100%;
+	float: left;
+}
+
+.placeTimeUpRight{
+	width: 50%;
+	height: 100%;
+	float: left;
+	text-align: right;
+}
+
+.buttonRightNav{
+	margin-left: -6px;
+	margin-right: 7px;
+}
+
+.bottonSort{
+	color: #008cba;
+	margin-top: 12px;
+}
+
+.bottonSort:hover{
+	color: #007295;
+}
+
+/*
+a.button.tiny.navButtons{
+	background-color: #5cb85c;
+}
+
+a.button.tiny.navButtons:hover{
+	background-color: #449d44;
+}
+*/
+a.button.tiny{
+	text-decoration: none;
+}
+
+.textVisible{
+	display: none;
+}
+
+/*-------- Items Time Line --------*/
+#itemsPoint{
+	color:#b9b9b9;
+	text-decoration: none;
+}
+a#itemsPoint:hover{
+	color:#008cba;
+}
+a#itemsPoint div{
+	z-index: 1;
+}
+
+
+a#itemsPoint:hover div{
+	background-color: #fff;
+	position: absolute;
+	z-index: 99999;
+}
+
+.vis.timeline .item.selected{
+	border-color: #97B0F8;
+	background-color: #D5DDF6;
+}
+
+.vis.timeline .item.point.selected {
+	background-color: transparent;
+}
+
+.vis.timeline .point div.item.dot{
+	border-color: transparent;
+	background-color: transparent;	
+}
+
+.vis.timeline.root {
+      border: 1px solid #97B0F8;
+      border-radius: 10px;
+}      
+
+.vis.timeline .item.line {
+	border: 1px solid #97B0F8;
+	z-index: 1;
+}	
+
+.vis.timeline .item.box {
+	z-index: 2;
+	cursor: pointer;
+}	
+
+.vis.timeline .background{
+	background-color: #C7D2EC;
+}
+
+.vis.timeline .foreground .group{
+	background-color: white;
+}
+
+/*---- Calendar ---- */
+.groupCalendar {
+	position: absolute;
+	z-index: 1;
+	display: table;
+	border-collapse: separate;
+}
+
+/*-------- switch -----*/
+.onoffswitch {
+	margin-left: 85%;
+    position: relative; width: 90px;
+    -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
+}
+.onoffswitch-checkbox {
+    display: none;
+}
+.onoffswitch-label {
+    display: block; overflow: hidden; cursor: pointer;
+    border: 1px solid #e7e7e7; border-radius: 20px;
+}
+.onoffswitch-inner {
+    display: block; width: 200%; margin-left: -100%;
+    -moz-transition: margin 0.3s ease-in 0s; -webkit-transition: margin 0.3s ease-in 0s;
+    -o-transition: margin 0.3s ease-in 0s; transition: margin 0.3s ease-in 0s;
+}
+.onoffswitch-inner:before, .onoffswitch-inner:after {
+    display: block; float: left; width: 50%; height: 30px; padding: 0; line-height: 30px;
+    font-size: 14px; color: white; font-family: Trebuchet, Arial, sans-serif; font-weight: bold;
+    -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
+}
+.onoffswitch-inner:before {
+    content: "Data";
+    padding-left: 15px;
+    background-color: #008cba; color: #FFFFFF;
+}
+.onoffswitch-inner:after {
+    content: "Point";
+    padding-right: 15px;
+    background-color: #EEEEEE; color: #000;
+    text-align: right;
+}
+.onoffswitch-switch {
+	/*
+    display: block; width: 18px; margin: 6px;
+    background: #FFFFFF;
+    border: 2px solid #999999; border-radius: 20px;
+    position: absolute; top: 0; bottom: 0; right: 56px;
+    -moz-transition: all 0.3s ease-in 0s; -webkit-transition: all 0.3s ease-in 0s;
+    -o-transition: all 0.3s ease-in 0s; transition: all 0.3s ease-in 0s; 
+    */
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {
+    margin-left: 0;
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
+    right: 0px; 
+}

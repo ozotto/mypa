@@ -1,0 +1,31 @@
+<div class="modal-header">
+	<h3 class="modal-title">{{article.title}}</h3>
+    <div ng-repeat="category in categories | filter: article.category">
+              <h6>Category:  {{ category.name }}</h6>
+    </div>
+    <!--
+    <rating ng-model="rate" max="max" readonly="isReadonly" on-hover="hoveringOver(value)" ng-click="makeRate(value)"></rating>
+    -->
+</div>
+
+<div class="modal-body">
+    <div style="height: 305px">
+    	<carousel interval="myInterval">
+	        <slide ng-repeat="slide in slides" active="slide.active">
+		        <img ng-src="{{slide.image}}" style="margin:auto;">
+		        <div class="carousel-caption">
+		        	<h4>Slide {{$index}}</h4>
+		            <p>{{slide.text}}</p>
+		        </div>
+	        </slide>
+        </carousel>
+    </div>
+    <!-- <img src="images/articles/NoPhoto.jpg" class="imgArticle" >-->
+    {{article.content}}
+    <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.</p>
+    <!--<button class="btn btn-success" ng-click="addFavorites(articleInfo._id)">Add Favorites &raquo;</button>-->
+    
+</div>
+  
+
+

@@ -1,0 +1,398 @@
+
+<h6>Change Data</h6>
+<ul>
+  <li>voir Alls <button class="btn btn-success" ng-click="allData()">Alls</button></li>
+  <li>voir historic <button class="btn btn-success" ng-click="historyData()">historic</button></li>
+  <li>voir favorites <button class="btn btn-success" ng-click="favoriteData()">favorites</button></li>
+  <li>voir orderUp <button class="btn btn-success" ng-click="orderUpData()">orderUp</button></li>
+  <li>voir orderDown <button class="btn btn-success" ng-click="orderDownData()">orderDown</button></li>
+  <li>voir MaxArticles <button class="btn btn-success" ng-click="maxData()">MaxArticles</button></li>
+  <li>voir CheckBox ON <button class="btn btn-success" ng-click="checkOn()">CheckOn</button></li>
+  <li>voir CheckBox OFF <button class="btn btn-success" ng-click="checkOff()">CheckOff</button></li>
+</ul>
+
+
+verify change = <p> 
+<ul ng-repeat = "item in data.load.groups._data">
+  <li>{{ item.content}}</li>
+</ul>
+
+<h6>Change time Line</h6>
+
+<div id="outer" class="visibility">{{myTestVariable}}</div> 
+<!-- 
+  {{data}} 
+  {{myTestVariable}}
+  <div navigationmenu><button>From Directive</button></div>
+<div>
+  <div class="row fluid">
+      <div class="medium-5 columns">
+        
+       
+        <button class="btn btn-success" ng-click="viewHistoric()">View Historic &raquo;</button>
+        <button class="btn btn-success" ng-click="viewFavorites()">View Favorites &raquo;</button>
+      
+      </div>
+      
+      <div class="medium-7 columns">
+        Sort by: <select ng-model="opCategoryDefault" ng-options="category.name for category in optionCategories" ng-change="selectSort()"></select>
+        Category: 
+        <select ng-model="opSelectCategory" ng-options="category.name for category in categories" ng-change="selectCategory()"></select>
+      </div>  
+  </div>        
+</div>
+-->
+<!-- Timeline Total Categories -->
+<div ng-show="showTimeline == 'sortby'">
+<vis ng-transclude>
+
+  <div class="panelTimeline">
+    <div class="row fluid">
+      <div class="medium-5 columns">
+        <h4>{{dateDay}}</h4>
+        <time-Buttons>
+          
+          <button class="btn btn-success" 
+                  ng-click="sortTimeLine(makeVis,categories, articles, valueAlls, historic, favorites)">
+            Alls &raquo;
+          </button>
+          <button class="btn btn-success" 
+                  ng-click="viewHistory(makeVis,categories, articles, historic)">
+            View Historic &raquo;
+          </button>
+          <button class="btn btn-success" ng-click="viewFavorite(makeVis,categories, articles, favorites)">
+            View Favorites &raquo;</button>
+            <br><br><!--
+          <button ng-click="sortTimeLine(makeVis,categories, articles, valueSortUp, historic, favorites)" 
+          class="button tiny"><i class="fi-arrow-up"></i></button>
+          <button ng-click="sortTimeLine(makeVis,categories, articles, valueSortDown, historic, favorites)" 
+          class="button tiny"><i class="fi-arrow-down"></i></button>
+          <button ng-click="sortTimeLine(makeVis,categories, articles, valueSortPlus, historic, favorites)" 
+          class="button tiny"><i class="fi-plus"></i></button>
+          -->
+        </time-Buttons>
+      </div>
+      <div class="medium-7 columns">
+        <br/>
+        
+        <time-navigation class="clearfix">
+          <ul class="button-group round right">
+            <li>
+              <a ng-click="setScope('day')" class="button tiny {{view.day && 'primary' || 'secondary'}}">Day</a>
+            </li>
+            <li>
+              <a ng-click="setScope('week')" class="button tiny {{view.week && 'primary' || 'secondary'}}">Week</a>
+            </li>
+            <li>
+              <a ng-click="setScope('month')" class="button tiny {{view.month && 'primary' || 'secondary'}}">Month</a>
+            </li>
+            <li>
+              <a ng-click="setScope('year')" class="button tiny {{view.year && 'primary' || 'secondary'}}">Year</a>
+            </li>
+            <li>
+              <a ng-click="setScope('custom')"
+                 class="button tiny {{view.custom && 'primary' || 'secondary'}}">Custom</a>
+            </li>
+          </ul>
+        </time-navigation>
+      
+      </div>
+    </div>
+  </div>
+  <button class="btn btn-success" ng-click="allData()">Alls</button>
+  <div id="showcase" class="row fluid" style="margin-top: -20px">
+      
+    <div class="panelButtons">
+    <time-Buttons>
+      <button 
+        ng-click="sortTimeLine(makeVis,categories, articles, valueSortUp, historic, favorites)" 
+        class="sortBy"><i class="fi-arrow-up"></i>
+      </button>
+      <button ng-click="sortTimeLine(makeVis,categories, articles, valueSortDown, historic, favorites)" 
+          class="sortBy"><i class="fi-arrow-down"></i></button>
+      <button ng-click="sortTimeLine(makeVis,categories, articles, valueSortPlus, historic, favorites)" 
+          class="sortBy"><i class="fi-plus"></i></button>    
+    </time-Buttons>
+    <div>
+    
+    <time-line data="data" options="options" events="events"></time-line>
+    
+    <time-board><h6>{{info.first}}</h6></time-board>
+    <time-navigation>
+      <ul class="button-group round right" style="margin-right: 15px">
+        <li>
+          <a ng-click="stepScope(-1)" class="button tiny"><i class="fi-arrow-left"></i></a>
+        </li>
+        <li>
+          <a ng-click="zoomScope(0.2)" class="button tiny"><i class="fi-arrow-up"></i></a>
+        </li>
+        <li>
+          <a ng-click="zoomScope(-0.2)" class="button tiny"><i class="fi-arrow-down"></i></a>
+        </li>
+        <li>
+          <a ng-click="stepScope(1)" class="button tiny"><i class="fi-arrow-right"></i></a>
+        </li>
+      </ul>
+    </time-navigation>
+  </div>
+</vis>
+</div>
+
+<!-- Timeline by Category 
+<div ng-show="showTimeline == 'bycategory'">
+<vis ng-transclude>
+  <div class="panel">
+    <div class="row fluid">
+      <div class="medium-5 columns">
+        <time-Select></time-Select>
+        <time-board>
+          <h5>{{info.first}}</h5>
+        </time-board>
+      </div>
+      <div class="medium-7 columns">
+        <br/>
+        
+        <time-navigation class="clearfix">
+          <ul class="button-group round right">
+            <li>
+              <a ng-click="setScope('day')" class="button tiny {{view.day && 'primary' || 'secondary'}}">Day</a>
+            </li>
+            <li>
+              <a ng-click="setScope('week')" class="button tiny {{view.week && 'primary' || 'secondary'}}">Week</a>
+            </li>
+            <li>
+              <a ng-click="setScope('month')" class="button tiny {{view.month && 'primary' || 'secondary'}}">Month</a>
+            </li>
+            <li>
+              <a ng-click="setScope('year')" class="button tiny {{view.year && 'primary' || 'secondary'}}">Year</a>
+            </li>
+            <li>
+              <a ng-click="setScope('custom')"
+                 class="button tiny {{view.custom && 'primary' || 'secondary'}}">Custom</a>
+            </li>
+          </ul>
+          
+          <ul class="button-group round right" style="margin-right: 15px">
+            <li>
+              <a ng-click="stepScope(-1)" class="button tiny"><i class="fi-arrow-left"></i></a>
+            </li>
+            <li>
+              <a ng-click="zoomScope(0.2)" class="button tiny"><i class="fi-arrow-up"></i></a>
+            </li>
+            <li>
+              <a ng-click="zoomScope(-0.2)" class="button tiny"><i class="fi-arrow-down"></i></a>
+            </li>
+            <li>
+              <a ng-click="stepScope(1)" class="button tiny"><i class="fi-arrow-right"></i></a>
+            </li>
+          </ul>
+          
+        </time-navigation>
+      </div>
+    </div>
+  </div>
+  <h4>{{nameCategory}}</h4>
+  <div id="showcase" class="row fluid" style="margin-top: -20px">
+    <time-line data="dataTime" options="options" events="events"></time-line>
+  </div>
+</vis>
+</div>
+-->
+<!-- Timeline not Data 
+<div ng-show="showTimeline == 'notArticle'">
+  <span ng-bind="msgTime"></span>
+</div>
+-->
+<!-- Timeline by viewHistoric 
+<div ng-show="showTimeline == 'viewHistoric'">
+<vis ng-transclude>
+  <div class="panel">
+    <div class="row fluid">
+      <div class="medium-5 columns">
+        <time-Select></time-Select>
+        <time-board>
+          <h5>{{info.first}}</h5>
+        </time-board>
+      </div>
+      <div class="medium-7 columns">
+        <br/>
+        <time-navigation class="clearfix">
+          <ul class="button-group round right">
+            <li>
+              <a ng-click="setScope('day')" class="button tiny {{view.day && 'primary' || 'secondary'}}">Day</a>
+            </li>
+            <li>
+              <a ng-click="setScope('week')" class="button tiny {{view.week && 'primary' || 'secondary'}}">Week</a>
+            </li>
+            <li>
+              <a ng-click="setScope('month')" class="button tiny {{view.month && 'primary' || 'secondary'}}">Month</a>
+            </li>
+            <li>
+              <a ng-click="setScope('year')" class="button tiny {{view.year && 'primary' || 'secondary'}}">Year</a>
+            </li>
+            <li>
+              <a ng-click="setScope('custom')"
+                 class="button tiny {{view.custom && 'primary' || 'secondary'}}">Custom</a>
+            </li>
+          </ul>
+          
+          <ul class="button-group round right" style="margin-right: 15px">
+            <li>
+              <a ng-click="stepScope(-1)" class="button tiny"><i class="fi-arrow-left"></i></a>
+            </li>
+            <li>
+              <a ng-click="zoomScope(0.2)" class="button tiny"><i class="fi-arrow-up"></i></a>
+            </li>
+            <li>
+              <a ng-click="zoomScope(-0.2)" class="button tiny"><i class="fi-arrow-down"></i></a>
+            </li>
+            <li>
+              <a ng-click="stepScope(1)" class="button tiny"><i class="fi-arrow-right"></i></a>
+            </li>
+          </ul>
+          
+        </time-navigation>
+      </div>
+    </div>
+  </div>
+  <div id="showcase" class="row fluid" style="margin-top: -20px">
+    <time-line data="dataHistoric" options="options" events="events"></time-line>
+  </div>
+</vis>
+</div>
+-->
+
+<!-- Timeline by view Favorites 
+<div ng-show="showTimeline == 'viewFavorites'">
+<vis ng-transclude>
+  <div class="panel">
+    <div class="row fluid">
+      <div class="medium-5 columns">
+        <time-Select></time-Select>
+        <time-board>
+          <h5>{{info.first}}</h5>
+        </time-board>
+      </div>
+      <div class="medium-7 columns">
+        <br/>
+        <time-navigation class="clearfix">
+          <ul class="button-group round right">
+            <li>
+              <a ng-click="setScope('day')" class="button tiny {{view.day && 'primary' || 'secondary'}}">Day</a>
+            </li>
+            <li>
+              <a ng-click="setScope('week')" class="button tiny {{view.week && 'primary' || 'secondary'}}">Week</a>
+            </li>
+            <li>
+              <a ng-click="setScope('month')" class="button tiny {{view.month && 'primary' || 'secondary'}}">Month</a>
+            </li>
+            <li>
+              <a ng-click="setScope('year')" class="button tiny {{view.year && 'primary' || 'secondary'}}">Year</a>
+            </li>
+            <li>
+              <a ng-click="setScope('custom')"
+                 class="button tiny {{view.custom && 'primary' || 'secondary'}}">Custom</a>
+            </li>
+          </ul>
+          
+          <ul class="button-group round right" style="margin-right: 15px">
+            <li>
+              <a ng-click="stepScope(-1)" class="button tiny"><i class="fi-arrow-left"></i></a>
+            </li>
+            <li>
+              <a ng-click="zoomScope(0.2)" class="button tiny"><i class="fi-arrow-up"></i></a>
+            </li>
+            <li>
+              <a ng-click="zoomScope(-0.2)" class="button tiny"><i class="fi-arrow-down"></i></a>
+            </li>
+            <li>
+              <a ng-click="stepScope(1)" class="button tiny"><i class="fi-arrow-right"></i></a>
+            </li>
+          </ul>
+          
+        </time-navigation>
+      </div>
+    </div>
+  </div>
+  <div id="showcase" class="row fluid" style="margin-top: -20px">
+    <time-line data="dataFavorites" options="options" events="events"></time-line>
+  </div>
+</vis>
+</div>
+-->
+
+<!-- Template Modal -->
+ <script type="text/ng-template" id="myModalContent.html">
+    <div class="modal-header">
+      <h3 class="modal-title">{{articleInfo.title}}</h3><i ng-click="addFavorites(articleInfo._id)" class="fi-heart styleHeart"></i>
+      <div ng-repeat="category in categories | filter: articleInfo.category">
+        <h4>Category:  {{ category.name }}</h4>
+      </div>
+      <rating ng-model="rate" max="max" readonly="isReadonly" on-hover="hoveringOver(value)" ng-click="makeRate(value)"></rating>
+    </div>
+    <div class="modal-body">
+          <div style="height: 305px">
+            <carousel interval="myInterval">
+              <slide ng-repeat="slide in slides" active="slide.active">
+                <img ng-src="{{slide.image}}" style="margin:auto;">
+                <div class="carousel-caption">
+                  <h4>Slide {{$index}}</h4>
+                  <p>{{slide.text}}</p>
+                </div>
+              </slide>
+            </carousel>
+          </div>
+          <!-- <img src="images/articles/NoPhoto.jpg" class="imgArticle" > -->
+          {{articleInfo.content}}
+        
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-success" ng-click="more(articleInfo._id)">View more &raquo;</button>
+      <button class="btn btn-primary" ng-click="ok()">OK</button>
+      <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+    </div>
+</script>
+<script type="text/javascript">
+  function changeCategory (name) {
+    var scope = angular.element($("#outer")).scope();
+        scope.$apply(function(){
+          scope.myTestVariable = name;
+          
+      });
+  }
+
+  function myMoveFunction (id) {
+    
+    var idText = "text"+id;
+
+    document.getElementById(id).style.color = "blue";
+    document.getElementById(idText).style.display = "inline";
+
+    /*document.getElementById("p2").style.fontFamily = "Arial";
+    document.getElementById("p2").style.fontSize = "larger";*/
+  }
+  function myMoveFunction2 (id) {
+    var idText = "text"+id;
+    document.getElementById(id).style.color = "black";
+    document.getElementById(idText).style.display = "none";
+  }
+</script>
+<style type="text/css">
+
+div .textTime{
+  display: none;
+}
+
+/*eliminy point 
+.item.dot {
+visibility: hidden;
+}
+*/
+
+</style>
+
+
+
+
+
+

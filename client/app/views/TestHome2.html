@@ -1,0 +1,155 @@
+<!--<h3>Test Home</h3>
+ {{articles}} 
+<h2>{{article.title}}</h2>
+<h2>{{articleSelected.title}}</h2>
+<div ng-click="clickme()">Click me</div>
+<button ng-mouseover="mouseOver()">Increment</button>
+<span tooltip="After today restriction">Min date</span>
+-->
+ <!-- {{ dataArticles }} -->
+
+ <script type="text/javascript">
+
+  function myFunction() {
+  alert("funcion Java");
+  }
+  function myFunction2(name) {
+  alert("desde groups "+name);
+  }
+
+</script>  
+ <!--
+ <button onclick="myFunction()">Click me</button>
+-->
+<vis ng-transclude>
+  <div class="panel">
+    <div class="row fluid">
+      <div class="medium-5 columns">
+<!--        <a ng-click="vamosLink()" class="button tiny">test</a> -->
+        <time-board>
+          <h4>{{info.first}}</h4>
+          <h5>{{info.second}}</h5>
+          <h6>{{info.third}}</h6>
+        </time-board>
+        <time-menu>
+          <a ng-click="vamosPod(dataArticles)" class="button tiny">Articles</a>
+          <a ng-click="vamosGrupos(dataGroups)" class="button tiny">Groups</a>
+        </time-menu>
+      </div>
+      <div class="medium-7 columns">
+        <br/>
+        <time-navigation class="clearfix">
+          <ul class="button-group round right">
+            <li>
+              <a ng-click="setScope('day')" class="button tiny {{view.day && 'primary' || 'secondary'}}">Day</a>
+            </li>
+            <li>
+              <a ng-click="setScope('week')" class="button tiny {{view.week && 'primary' || 'secondary'}}">Week</a>
+            </li>
+            <li>
+              <a ng-click="setScope('month')" class="button tiny {{view.month && 'primary' || 'secondary'}}">Month</a>
+            </li>
+            <li>
+              <a ng-click="setScope('year')" class="button tiny {{view.year && 'primary' || 'secondary'}}">Year</a>
+            </li>
+            <li>
+              <a ng-click="setScope('custom')"
+                 class="button tiny {{view.custom && 'primary' || 'secondary'}}">Custom</a>
+            </li>
+          </ul>
+          <ul class="button-group round right" style="margin-right: 15px">
+            <li>
+              <a ng-click="stepScope(-1)" class="button tiny"><i class="fi-arrow-left"></i></a>
+            </li>
+            <li>
+              <a ng-click="zoomScope(0.2)" class="button tiny"><i class="fi-arrow-up"></i></a>
+            </li>
+            <li>
+              <a ng-click="zoomScope(-0.2)" class="button tiny"><i class="fi-arrow-down"></i></a>
+            </li>
+            <li>
+              <a ng-click="stepScope(1)" class="button tiny"><i class="fi-arrow-right"></i></a>
+            </li>
+          </ul>
+        </time-navigation>
+      </div>
+    </div>
+  </div>
+  <div id="showcase" class="row fluid" style="margin-top: -20px">
+    
+      <time-line data="data" options="options" events="events">
+      <!--  <a ng-click="talvez()" class="button tiny">nuevo</a>
+        <a ng-click="setPuede()" class="button tiny">podemos</a>
+        <a ng-click="espero()" class="button tiny">Espero</a>
+        <a ng-click="inLink()" class="button tiny">inVis</a> -->
+      </time-line>
+  
+  </div>
+</vis>
+<style>
+    #showcase {
+      padding: 30px;
+      background-color: #fbfbfb;
+    }
+
+    .fluid {
+      width: 100%;
+      max-width: 100%;
+    }
+
+    .vis.timeline {
+      background-color: #ffffff;
+    }
+
+    .vis.timeline .item {
+      /*background-color: #008CBA;*/
+      border-color: #008CBA;
+      /*color: #ffffff;*/
+      /*font-family: 'Helvetica Neue', Helvetica, Helvetica, Arial, sans-serif;*/
+      /*font-kerning: auto;*/
+      /*font-size: 13px;*/
+      /*font-style: normal;*/
+      /*font-variant: normal;*/
+      /*font-variant-ligatures: normal;*/
+      /*font-weight: normal;*/
+    }
+
+    .vis.timeline .item.green {
+      background-color: green;
+      border-color: green;
+      color: #ffffff;
+    }
+
+    .vis.timeline .item.red {
+      background-color: red;
+      border-color: red;
+      color: #ffffff;
+    }
+
+    .vis.timeline .item.orange {
+      background-color: orange;
+      border-color: orange;
+    }
+
+    .vis.timeline .item.magenta {
+      background-color: magenta;
+      border-color: magenta;
+      color: #ffffff;
+    }
+
+    .vis.timeline .item.past {
+      filter: alpha(opacity=50);
+      opacity: 0.5;
+    }
+    .test{
+      background: red;
+    }
+
+    h6 {
+      font-size: 0.75rem;
+    }
+
+    pre {
+      font-size: 0.9rem;
+    }
+  </style>

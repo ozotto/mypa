@@ -1,0 +1,189 @@
+<div id="outer" class="textVisible">{{myTestVariable}}</div> 
+<pre class="textVisible">Selected date is: <em>{{dt | date:'fullDate' }}</em></pre>
+  <p class="groupCalendar">
+    <datepicker ng-show="isSelectCalendar" ng-model="dt" min-date="minDate" show-weeks="true" class="well well-sm" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ></datepicker>
+  </p>
+<div class="jumbotron panelTimeLine">  
+<vis ng-transclude>
+  <!-- <div class="titleDay">{{dateDay}}</div> -->
+  <div class="navegationUp">
+    <div class="navRight">
+      <ul class="button-group round left">
+        <li>
+          <a class="button tiny" ng-click="allData()">
+            <span class="glyphicon glyphicon-asterisk buttonRightNav sizeIconSmall" ></span> All</a>
+        </li>
+        <li>
+          <a class="button tiny" ng-click="historyData()">
+            <span class="glyphicon glyphicon-eye-open buttonRightNav sizeIconSmall" ></span> History</a>
+        </li>
+        <li>
+          <a class="button tiny" ng-click="favoriteData()">
+            <span class="glyphicon glyphicon-heart buttonRightNav sizeIconSmall"></span> Favorites</a>
+        </li>
+      </ul>
+    </div>
+    <div class="navLeft">
+      <time-navigation class="clearfix">
+          <ul class="button-group round right">
+            <!--
+            <li>
+              <a ng-click="setScope('cale')" class="button tiny {{view.cal && 'primary' || 'secondary'}}">
+                <i ng-click="openCalendar()" class="glyphicon glyphicon-calendar"></i>
+              </a>
+              
+            </li>
+            
+            <li>
+              <a ng-click="setScope('cal')" class="button tiny {{view.cal && 'primary' || 'secondary'}}">Cal</a>
+            </li>
+            -->
+            <li>
+              <a ng-click="setScope('day')" class="button tiny">Day</a>
+            </li>
+            <li>
+              <a ng-click="setScope('week')" class="button tiny">Week</a>
+            </li>
+            <li>
+              <a ng-click="setScope('month')" class="button tiny">Month</a>
+            </li>
+            <li>
+              <a ng-click="setScope('year')" class="button tiny">Year</a>
+            </li>
+
+            <li>
+              <a ng-click="setScope('custom')" class="button tiny">Custom</a>
+            </li>
+
+          </ul>
+      </time-navigation>
+    </div>
+  </div>
+	
+  <div class="placeTimeUp">
+    <div class="placeTimeUpLeft">
+
+      <ul class="button-group round left">
+        <li>
+          <a class="button tiny" ng-click="orderUpData()">
+           <span class="glyphicon glyphicon-chevron-down sizeIconSmall" ></span>
+           </a>
+        </li>
+        <li>
+          <a class="button tiny" ng-click="orderDownData()">
+            <span class="glyphicon glyphicon-chevron-up sizeIconSmall" ></span>
+          </a>  
+        </li>
+        <li>
+          <a class="button tiny" ng-click="orderMoreData()">
+            <span class="glyphicon glyphicon-plus sizeIconSmall"></span></a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="placeTimeUpRight">
+      <input type="radio" ng-model="checkRadio" value="Data" ng-click="checkOn()">  Text 
+      <input type="radio" ng-model="checkRadio" value="Point" ng-click="checkOff()"> Icon
+    </div>
+  </div>
+  
+	<time-line data="data" options="options" events="events"></time-line>
+
+	<div class="navegationBottom">
+		<div class="rangeInfo">
+     <time-board><h6 class="disableText"><!-- {{info.first}} --></h6></time-board>
+    </div>
+    <div class="placeNavegation">
+  		<time-navigation>
+  	      <ul class="button-group round right" style="margin-right: 15px">
+  	        <li>
+  	          <a ng-click="stepScope(-1)" class="button tiny"><i class="fi-arrow-left"></i></a>
+  	        </li>
+  	        <li>
+  	          <a ng-click="zoomScope(0.2)" class="button tiny"><i class="fi-arrow-up"></i></a>
+  	        </li>
+  	        <li>
+  	          <a ng-click="zoomScope(-0.2)" class="button tiny"><i class="fi-arrow-down"></i></a>
+  	        </li>
+  	        <li>
+  	          <a ng-click="stepScope(1)" class="button tiny"><i class="fi-arrow-right"></i></a>
+  	        </li>
+  	      </ul>
+  	    </time-navigation>
+     </div>   
+	</div>
+</vis>
+</div>
+
+
+<!---- Template Modal ---->
+<script type="text/ng-template" id="myModalContent.html">
+    <div class="modal-header">
+      <h3 class="modal-title testTitulo">{{articleInfo.title}}</h3>
+        <div ng-repeat="category in categories | filter: articleInfo.category">
+          <h6>Category:  {{ category.name }}</h6>
+        </div>
+       <!-- <i ng-click="addFavorites(articleInfo._id)" class="fi-heart styleHeart myheart"></i>-->
+      <!--<rating ng-model="rate" max="max" readonly="isReadonly" on-hover="hoveringOver(value)" ng-click="makeRate(value)"></rating> -->
+    </div>
+    <div class="modal-body">
+          <div style="height: 305px">
+            <carousel interval="myInterval">
+              <slide ng-repeat="slide in slides" active="slide.active">
+                <img ng-src="{{slide.image}}" style="margin:auto;">
+                <div class="carousel-caption">
+                  <h4>Slide {{$index}}</h4>
+                  <p>{{slide.text}}</p>
+                </div>
+              </slide>
+            </carousel>
+          </div>
+          <!-- <img src="images/articles/NoPhoto.jpg" class="imgArticle" > -->
+          {{articleInfo.content}}
+        
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-success" ng-click="addFavorites(articleInfo._id)">Add Favorites &raquo;</button>
+      <button class="btn btn-success" ng-click="more(articleInfo._id)">View more &raquo;</button>
+      <button class="btn btn-primary" ng-click="ok()">OK</button>
+      <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+    </div>
+</script>
+
+<!--- Functions Javascript -->
+<script type="text/javascript">
+  function changeCategory (name) {
+    var scope = angular.element($("#outer")).scope();
+        scope.$apply(function(){
+          scope.myTestVariable = name;
+          
+      });
+  }
+
+  function myMoveFunction (id) {
+    
+    var idText = "text"+id;
+
+    document.getElementById(id).style.color = "#008cba";
+    document.getElementById(idText).style.display = "inline";
+
+    /*document.getElementById("p2").style.fontFamily = "Arial";
+    document.getElementById("p2").style.fontSize = "larger";*/
+  }
+  function myMoveFunction2 (id) {
+    var idText = "text"+id;
+    document.getElementById(id).style.color = "black";
+    document.getElementById(idText).style.display = "none";
+  }
+
+  function myMoveItem(id){
+    //alert(id);
+    document.getElementById(id).style.color = "#008cba";
+  }
+
+  function myMoveItem2(id){
+    document.getElementById(id).style.color = "#1A1A1A"; 
+  }
+
+</script>
+
